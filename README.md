@@ -1,2 +1,1 @@
-# SlangWord
-# First Java project ( from College )
+# SlangWord (First Java project (College))
