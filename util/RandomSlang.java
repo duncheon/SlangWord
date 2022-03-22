@@ -7,6 +7,7 @@ import dictionary.Dictionary;
 import dictionary.SlangWord;
 
 public class RandomSlang {
+    
     public static List<SlangWord> randomSlang(Dictionary mDic, List<String> keyList, int total) {
         List<SlangWord> rs = new ArrayList<>();
         for (int i = 0 ; i < total ;i++) {

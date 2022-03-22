@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import util.RandomSlang;
-import util.Search;
 
 public class Dictionary {
     private HashMap<String,String> words;
@@ -86,6 +85,29 @@ public class Dictionary {
         }
     }
 
+    public void resetData(String backupPath,String resetPath) throws IOException {
+        // https://shareprogramming.net/lam-the-nao-de-copy-file-trong-java/
+        generateDataFromFile(backupPath);
+        PrintStream ps;
+        try {
+            ps = new PrintStream(new FileOutputStream("./" + resetPath + ".txt"));
+            try {
+                ps.println("Slag`Meaning");
+                for (String i : this.words.keySet()) {
+                    String line = i + "`" + this.words.get(i);
+                    ps.println(line);
+                }
+            }
+            catch(Exception exc) {
+                System.out.print(exc);
+            }
+            ps.close();
+        }
+        catch (FileNotFoundException exc) {
+            System.out.println("File not found");
+        }
+        
+    }
     public static void main(String args[]) throws IOException {
         Dictionary mDictionary = new Dictionary();
         mDictionary.generateDataFromFile("slang");
@@ -95,5 +117,8 @@ public class Dictionary {
         for (int i = 0 ; i < rs.size();i++) {
             rs.get(i).printSlangWord();
         }
+
+        mDictionary.resetData("slang_default","slang_test");
     }
+
 }
