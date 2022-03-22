@@ -1,7 +1,5 @@
 package dictionary;
 
-import dictionary.SlangWord;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,7 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
+
+import util.Search;
 
 public class Dictionary {
     private HashMap<String,String> words;
@@ -17,6 +17,9 @@ public class Dictionary {
         this.words = new HashMap<>();
     }
 
+    public HashMap<String,String> getData() {
+        return this.words;
+    }
     public void generateDataFromFile(String filepath) throws IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filepath + ".txt"));
@@ -29,7 +32,6 @@ public class Dictionary {
                 }
                 else {
                     String dataArray[] = line.split("\\`",-1);
-
                     if (dataArray.length == 2) { // in case something when wrong with the data
                         words.put(dataArray[0], dataArray[1]);
                     }
@@ -43,7 +45,7 @@ public class Dictionary {
 
     public void printAll() {
         for (String i : this.words.keySet()) {
-            System.out.println(i + ": " + this.words.get(i));
+            System.out.println(i + this.words.get(i));
         }
     }
     public void saveWord(SlangWord newWord, String filepath) {
@@ -76,8 +78,11 @@ public class Dictionary {
 
     public static void main(String args[]) throws IOException {
         Dictionary mDictionary = new Dictionary();
-        mDictionary.generateDataFromFile("slang-test");
-        mDictionary.printAll();
-        mDictionary.add(new SlangWord("HELOALL","HI"));
+        mDictionary.generateDataFromFile("slang");
+
+        List<SlangWord> rs = Search.searchByDef("Trademark", mDictionary);
+        for (int i = 0 ; i < rs.size();i++) {
+            rs.get(i).printSlangWord();
+        }
     }
 }
