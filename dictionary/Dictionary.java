@@ -6,20 +6,29 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import util.RandomSlang;
 import util.Search;
 
 public class Dictionary {
     private HashMap<String,String> words;
+    private List<String> keys; // for randomize
     public Dictionary() {
         this.words = new HashMap<>();
+        this.keys = new ArrayList<>();
     }
 
     public HashMap<String,String> getData() {
         return this.words;
     }
+
+    public List<String>  getKeys() {
+        return this.keys;
+    }
+
     public void generateDataFromFile(String filepath) throws IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filepath + ".txt"));
@@ -34,6 +43,7 @@ public class Dictionary {
                     String dataArray[] = line.split("\\`",-1);
                     if (dataArray.length == 2) { // in case something when wrong with the data
                         words.put(dataArray[0], dataArray[1]);
+                        keys.add(dataArray[0]);
                     }
                 }
             }
@@ -80,7 +90,8 @@ public class Dictionary {
         Dictionary mDictionary = new Dictionary();
         mDictionary.generateDataFromFile("slang");
 
-        List<SlangWord> rs = Search.searchByDef("Trademark", mDictionary);
+        List<SlangWord> rs = RandomSlang.randomSlang(mDictionary, mDictionary.getKeys(), 4);
+
         for (int i = 0 ; i < rs.size();i++) {
             rs.get(i).printSlangWord();
         }
