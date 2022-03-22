@@ -23,8 +23,6 @@ public class Search {
     public static SlangWord searchBySlang(String wordsInput, Dictionary mDict) {
         HashMap<String,String> wordsData = mDict.getData();
         String def = wordsData.get(wordsInput);
-        
         return new SlangWord(wordsInput, def);
-
     }
 }

@@ -30,7 +30,7 @@ public class Dictionary {
 
     public void generateDataFromFile(String filepath) throws IOException {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filepath + ".txt"));
+            BufferedReader br = new BufferedReader(new FileReader("./data/" + filepath + ".txt"));
             
             br.readLine(); // skip first line
             while (true) {
@@ -57,10 +57,11 @@ public class Dictionary {
             System.out.println(i + this.words.get(i));
         }
     }
+
     public void saveWord(SlangWord newWord, String filepath) {
         PrintStream ps;
         try {
-            ps = new PrintStream(new FileOutputStream("./" + filepath + ".txt",true));
+            ps = new PrintStream(new FileOutputStream("./data/" + filepath + ".txt",true));
             try {
                 String line = newWord.getKeyword() + "`" + newWord.getDefinition();
                 ps.println(line);
@@ -86,11 +87,10 @@ public class Dictionary {
     }
 
     public void resetData(String backupPath,String resetPath) throws IOException {
-        // https://shareprogramming.net/lam-the-nao-de-copy-file-trong-java/
         generateDataFromFile(backupPath);
         PrintStream ps;
         try {
-            ps = new PrintStream(new FileOutputStream("./" + resetPath + ".txt"));
+            ps = new PrintStream(new FileOutputStream("./data/" + resetPath + ".txt"));
             try {
                 ps.println("Slag`Meaning");
                 for (String i : this.words.keySet()) {
