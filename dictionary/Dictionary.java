@@ -75,22 +75,10 @@ public class Dictionary {
             System.out.println("File not found");
         }
     }
-
-    public void add(SlangWord newWord) {
-        if (this.words.put(newWord.getKeyword(), newWord.getDefinition()) == null) {
-            saveWord(newWord, "slang-test");
-        }
-        else {
-            // Alert already exist
-            System.out.println("Slang Word already there");
-        }
-    }
-
-    public void resetData(String backupPath,String resetPath) throws IOException {
-        generateDataFromFile(backupPath);
+    public void saveSlangData(String path) throws IOException {
         PrintStream ps;
         try {
-            ps = new PrintStream(new FileOutputStream("./data/" + resetPath + ".txt"));
+            ps = new PrintStream(new FileOutputStream("./data/" + path + ".txt"));
             try {
                 ps.println("Slag`Meaning");
                 for (String i : this.words.keySet()) {
@@ -106,9 +94,35 @@ public class Dictionary {
         catch (FileNotFoundException exc) {
             System.out.println("File not found");
         }
-        
     }
-    public static void main(String args[]) throws IOException {
+
+    public Boolean add(SlangWord newWord) {
+        if (this.words.containsKey(newWord.getKeyword()) == false) {
+            saveWord(newWord, "slang-test");
+            return true;
+        }
+        else {
+            // Alert already exist
+            return false;
+        }
+    }
+
+    public void update(String key, SlangWord newVer) throws IOException {
+        this.words.remove(key);
+        this.words.put(newVer.getKeyword(),newVer.getDefinition());
+        saveSlangData("slang");
+    }
+
+    public void delete(String key) throws IOException {
+        this.words.remove(key);
+        saveSlangData("slang");
+    }
+
+    public void resetData(String backupPath,String resetPath) throws IOException {
+        generateDataFromFile(backupPath);
+        saveSlangData(resetPath);
+    }
+    public static void main(String[] args) throws IOException {
         Dictionary mDictionary = new Dictionary();
         mDictionary.generateDataFromFile("slang");
 
