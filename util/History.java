@@ -21,6 +21,10 @@ public class History {
     public int getSize() {
         return this.historyArr.size();
     }
+
+    public String get(int index) {
+        return this.historyArr.get(index);
+    }
     // type : by def or by 
     public void saveHistory(List <SlangWord>foundSlang, String historyPath, String keyword, String mode) { // Slang mode or definiton mode
         PrintStream ps;
@@ -29,7 +33,7 @@ public class History {
             try {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
                 LocalDateTime now = LocalDateTime.now();
-                String historyLine =  "MODE: " + mode  + "`" + keyword + "`time: " + dtf.format(now) + "`found: " + foundSlang.size() + "\n";
+                String historyLine =  "MODE: " + mode  + ", searchInput: " + keyword + "time: " + dtf.format(now) + "`found: " + foundSlang.size() + "\n";
                 for (SlangWord i : foundSlang) {
                     historyLine += i.getKeyword() + "`" + i.getDefinition() + "\n";
                 }
@@ -50,21 +54,24 @@ public class History {
         try {
             BufferedReader br = new BufferedReader(new FileReader("./data/" + historyPath + ".txt"));
             String historyLine = "";
+            int idx = 1;
+
+            String firstLine = br.readLine();
+            historyLine = "0. " + firstLine;
             while (true) {
                 String line = br.readLine();
                 if (line == null) {
+                    historyArr.add(historyLine);
                     break;
                 }
                 else {
                     String dataArray[] = line.split("\\`",-1);
-                    if (dataArray.length != 2) { // in case something when wrong with the data
-                        this.historyArr.add(historyLine);
-                        historyLine = "";
-                        historyLine = line;
-                        historyArr.add(historyLine);
+                    if (dataArray.length == 2) { // in case something when wrong with the data
+                        historyLine += "\n" + line;
                     }
                     else {
-                        historyLine += "\n" + line;
+                        historyArr.add(historyLine);
+                        historyLine = idx + ". " + line;
                     }
                 }
             }
@@ -83,5 +90,11 @@ public class History {
     public String getShortFormat(String historyLine) {
         String[] arr = historyLine.split("\n");
         return arr[0];
+    }
+
+    public void printShortHistory() {
+        for (String i : historyArr) {
+            System.out.println(getShortFormat(i));
+        }
     }
 }

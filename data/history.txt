@@ -1,6 +1,4 @@
-MODE: bySlang`MEAN`time: 2022/03/24 22:21:55`found: 1
-MEAN`Cool
-MODE: byDefiniton`hAppy`time: 2022/03/24 22:22:11`found: 34
+MODE: byDefiniton, searchInput: Happy, time: 2022/03/24 22:51:34, found: 34
 (:`Happy
 :(`Unhappy| sad
 :)`Happy
@@ -35,3 +33,5 @@ DWBH`Don't Worry, Be Happy
 /O/`Happy| arms in the air
 HBTU`Happy Birthday To You
 HBTY`Happy Birthday To You
+MODE: bySlang, searchInput: MEAN, time: 2022/03/24 22:51:37, found: 1
+MEAN`Cool

@@ -93,31 +93,39 @@ public class Menu {
 
     public void historyMenu() throws IOException {
         System.out.println("SlangWord dictionary --- Search history");
-        System.out.println("1.Detail history");
+        mHistory.printShortHistory();
+        System.out.println("\n1.Detail history");
         System.out.println("2.Back to main menu");
         System.out.println("3.Exit");
-        // runHistoryMenu();
+        runHistoryMenu();
     }
 
-    // public void runHistoryMenu() throws IOException {
-    //     System.out.print("Input selection: ");
-    //     int selection = sc.nextInt();
-    //     sc.nextLine();
-    //     System.out.println();
-    //     switch(selection) {
-    //         case 1:
-
-    //             break;
-    //         case 2:
-    //             printMenu();
-    //             break;
-    //         case 3:
-    //             System.exit(0);
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
+    public void detailedHistory() throws IOException {
+        System.out.println("Input history you wish to view detailed");
+        int selection = this.sc.nextInt();
+        System.out.println();
+        System.out.println(this.mHistory.get(selection));
+        historyMenu();
+    }
+    public void runHistoryMenu() throws IOException {
+        System.out.print("Input selection: ");
+        int selection = sc.nextInt();
+        sc.nextLine();
+        System.out.println();
+        switch(selection) {
+            case 1:
+                detailedHistory();
+                break;
+            case 2:
+                printMenu();
+                break;
+            case 3:
+                System.exit(0);
+                break;
+            default:
+                break;
+        }
+    }
     public void printMenu() throws IOException {
         System.out.println("SlangWord dictionary");
         System.out.println("1.Find slang word");
@@ -138,13 +146,13 @@ public class Menu {
         System.out.println();
         switch(selection) {
             case 1:
-                if (this.mHistory.getSize() == 0) {
-                    mHistory.loadHistory("history");
-                }
                 findSlangWordMenu();
                 break;
             case 2:
-                
+                if (this.mHistory.getSize() == 0) {
+                    mHistory.loadHistory("history");
+                }
+                historyMenu();
                 break;
             case 3:
                 break;
