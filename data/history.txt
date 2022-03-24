@@ -1,3 +1,37 @@
-HELOAL`heloal test`2022/03/23 05:13:48
-HELOAL1`heloal test1`2022/03/23 05:13:48
-HELOAL2`heloal test2`2022/03/23 05:13:48
+MODE: bySlang`MEAN`time: 2022/03/24 22:21:55`found: 1
+MEAN`Cool
+MODE: byDefiniton`hAppy`time: 2022/03/24 22:22:11`found: 34
+(:`Happy
+:(`Unhappy| sad
+:)`Happy
+:D`Happy
+:]`Happy
+=)`Happy
+>3`Evil but happy|Hate
+=]`Happy
+BH`Be Happy| Bloody Hell| Big Head
+C:`Very happy
+UWU`Happy Anime Face
+X)`Happy| mischevious
+X]`Happy
+^^`Happy
+HBD`Happy Birthday
+HFY`Here For You| Happy for You
+HGL`Happy Go Lucky
+HNY`Happy New Year
+HVD`Happy Valentine's Day
+JUICED`Happy| excited
+OBHWF`One Big Happy Weasely Family
+:DD`Very happy
+\O/`Happy| arms in the air
+YEHET`Yes In Sehun's Happy Mode
+^.^`Happy
+:{)`Happy with a moustache
+MHR`Many Happy Returns
+^W^`Happy
+STOKED`Very happy| excited
+.-.`Sad| unhappy
+DWBH`Don't Worry, Be Happy
+/O/`Happy| arms in the air
+HBTU`Happy Birthday To You
+HBTY`Happy Birthday To You

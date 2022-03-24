@@ -18,16 +18,22 @@ public class History {
     public History() {
         this.historyArr = new ArrayList<>();
     }
+    public int getSize() {
+        return this.historyArr.size();
+    }
     // type : by def or by 
-    public void saveHistory(SlangWord foundSlang, String historyPath) {
+    public void saveHistory(List <SlangWord>foundSlang, String historyPath, String keyword, String mode) { // Slang mode or definiton mode
         PrintStream ps;
         try {
             ps = new PrintStream(new FileOutputStream("./data/" + historyPath + ".txt",true));
             try {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
                 LocalDateTime now = LocalDateTime.now();
-                String historyLine =  foundSlang.getKeyword() +"`"+ foundSlang.getDefinition() + "`" + dtf.format(now);
-                ps.println(historyLine);
+                String historyLine =  "MODE: " + mode  + "`" + keyword + "`time: " + dtf.format(now) + "`found: " + foundSlang.size() + "\n";
+                for (SlangWord i : foundSlang) {
+                    historyLine += i.getKeyword() + "`" + i.getDefinition() + "\n";
+                }
+                ps.print(historyLine);
                 historyArr.add(historyLine);
             }
             catch(Exception exc) {
@@ -43,7 +49,7 @@ public class History {
     public void loadHistory(String historyPath) throws IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("./data/" + historyPath + ".txt"));
-            
+            String historyLine = "";
             while (true) {
                 String line = br.readLine();
                 if (line == null) {
@@ -51,8 +57,14 @@ public class History {
                 }
                 else {
                     String dataArray[] = line.split("\\`",-1);
-                    if (dataArray.length == 3) { // in case something when wrong with the data
-                        historyArr.add("Slang: " + dataArray[0] + ", Definition: " + dataArray[1] + ", Time: " + dataArray[2]);
+                    if (dataArray.length != 2) { // in case something when wrong with the data
+                        this.historyArr.add(historyLine);
+                        historyLine = "";
+                        historyLine = line;
+                        historyArr.add(historyLine);
+                    }
+                    else {
+                        historyLine += "\n" + line;
                     }
                 }
             }
@@ -66,5 +78,10 @@ public class History {
         for (String i : this.historyArr) {
             System.out.println(i);
         }
+    }
+
+    public String getShortFormat(String historyLine) {
+        String[] arr = historyLine.split("\n");
+        return arr[0];
     }
 }

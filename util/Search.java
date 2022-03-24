@@ -14,7 +14,7 @@ public class Search {
         String pattern = String.format(".*?%s.*?",wordsInput).toLowerCase();
         for (String i : wordsData.keySet()) {
             if (wordsData.get(i).toLowerCase().matches(pattern)) {
-                foundArr.add(new SlangWord(wordsData.get(i),i));
+                foundArr.add(new SlangWord(i,wordsData.get(i)));
             }
         }
         return foundArr;
@@ -22,7 +22,8 @@ public class Search {
 
     public static SlangWord searchBySlang(String wordsInput, Dictionary mDict) {
         HashMap<String,String> wordsData = mDict.getData();
-        String def = wordsData.get(wordsInput);
+        String def = "";
+        def = wordsData.get(wordsInput);
         return new SlangWord(wordsInput, def);
     }
 }
