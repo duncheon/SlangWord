@@ -107,6 +107,62 @@ public class Menu {
         System.out.println(this.mHistory.get(selection));
         historyMenu();
     }
+
+    public void addSlangWordMenu() throws IOException {
+        System.out.println("SlangWord dictionary --- Add slang word");
+        System.out.print("Input slang word you wish to add: ");
+        String key = sc.nextLine();
+        System.out.print("Input definition for your slang word");
+        String def = sc.nextLine();
+        if (this.mDict.add(new SlangWord(key,def))) {
+            System.out.println("Added " + key + " successfuly");
+        }
+        else {
+            System.out.println("This slang word is already exist");
+        }
+    }
+
+    public void editSlangWordMenu() throws IOException {
+        System.out.println("SlangWord dictionary --- Edit slang word");
+        System.out.print("Input slang word you wish to edit: ");
+        String key = sc.nextLine();
+        if (this.mDict.keyExist(key)) {
+            System.out.print("Input new slang keyword for your slang word");
+            String newKey = sc.nextLine();
+            System.out.print("Input new definition for your slang word");
+            String def = sc.nextLine();
+
+            this.mDict.update(key, new SlangWord(newKey,def));
+            System.out.println("Added " + key + " successfuly");
+        }
+        else {
+            System.out.println("The slang word you want to edit does not exist");
+        }
+    }
+
+    public void deleteSlangWordMenu() throws IOException {
+        System.out.println("SlangWord dictionary --- Delete slang word");
+        System.out.print("Input slang word you wish to delete: ");
+        String key = sc.nextLine();
+        if (this.mDict.keyExist(key)) {
+            System.out.println("Do you wish to delete slang word: " + key + " , defitnition: " + this.mDict.getData().get(key));
+            do {
+                System.out.print("Input 1(Yes) or 2(No)");
+                int selection = sc.nextInt();
+                sc.nextLine();
+            while(selection != 1 && selection != 2);
+            if (selection == 1) {
+                this.mDict.delete(key);
+                System.out.println("Removed + " + key + " successfuly");
+            }
+            else {
+                System.out.println("Aborted deleting the slang word");
+            }
+        }
+        else {
+            System.out.println("The slang word you want to edit does not exist");
+        }
+    }
     public void runHistoryMenu() throws IOException {
         System.out.print("Input selection: ");
         int selection = sc.nextInt();
@@ -155,8 +211,10 @@ public class Menu {
                 historyMenu();
                 break;
             case 3:
+                addSlangWordMenu();
                 break;
             case 4:
+                editSlangWordMenu();
                 break;
             case 5:
                 break;

@@ -107,6 +107,12 @@ public class Dictionary {
         }
     }
 
+    public Boolean keyExist(String key) {
+        if (this.words.containsKey(key)) {
+            return true;
+        }
+        return false;
+    }
     public void update(String key, SlangWord newVer) throws IOException {
         this.words.remove(key);
         this.words.put(newVer.getKeyword(),newVer.getDefinition());
