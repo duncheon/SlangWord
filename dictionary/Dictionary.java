@@ -107,6 +107,16 @@ public class Dictionary {
         }
     }
 
+    public List<SlangWord> randomSlang(int total) {
+        List<SlangWord> rs = new ArrayList<>();
+        for (int i = 0 ; i < total ;i++) {
+            int randomIdx = (int) (Math.random() * this.keys.size());
+            String key = this.keys.get(randomIdx);
+            rs.add(new SlangWord(key,words.get(key)));
+        }
+        return rs;
+    }
+    
     public Boolean keyExist(String key) {
         if (this.words.containsKey(key)) {
             return true;
