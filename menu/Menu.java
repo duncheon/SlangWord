@@ -23,7 +23,10 @@ public class Menu {
     public void launchSetup() throws IOException {
         mDict.generateDataFromFile("slang");
     }
-
+    public void menuPause() {
+        System.out.println("Press Enter to continue...");
+        sc.nextLine();
+    }
     public void findSlangWordMenu() throws IOException {
         System.out.println("SlangWord dictionary --- find slang word");
         System.out.println("1.Find by slang word");
@@ -39,13 +42,17 @@ public class Menu {
 
         List<SlangWord> list = new ArrayList<>();
         SlangWord rs = Search.searchBySlang(input, mDict);
-        list.add(rs);
-
+        if (rs.getDefinition() != null) {
+            list.add(rs);
+        }
+        System.out.println();
         if (rs.getDefinition() == null) {
-            System.out.println("No result found for this slang word");
+            System.out.println("No result found for this slang word\n");
+            menuPause();
         }
         else {
-            System.out.println("Your slang word: " + input + ", Definition: " + rs.getDefinition());
+            System.out.println("Your slang word: " + input + ", Definition: " + rs.getDefinition() + "\n");
+            menuPause();
         }
         mHistory.saveHistory(list, "history", input, "bySlang");
     }
@@ -55,14 +62,18 @@ public class Menu {
         String input = sc.nextLine();
         List<SlangWord> rs = Search.searchByDef(input, mDict);
         int size = rs.size();
+        System.out.println();
         if (size == 0) {
-            System.out.println("No result found for this definition");
+            System.out.println("No result found for this definition\n");
+            menuPause();
         }
         else {
             System.out.println("Found total " + size + " slang word(s) match(es) your definition");
             for (SlangWord i : rs) {
                 System.out.println("Slang: " + i.getKeyword() + " ,Definiton: " + i.getDefinition());
             }
+            System.out.println();
+            menuPause();
         }
         mHistory.saveHistory(rs, "history", input, "byDefiniton");
     }
@@ -103,8 +114,15 @@ public class Menu {
     public void detailedHistory() throws IOException {
         System.out.println("Input history you wish to view detailed");
         int selection = this.sc.nextInt();
+        sc.nextLine();
         System.out.println();
-        System.out.println(this.mHistory.get(selection));
+        if (selection > mHistory.getSize() - 1 || mHistory.getSize() == 0) {
+            System.out.println("Empty history or this record number is invalid" + "\n");
+        }
+        else {
+            System.out.println(this.mHistory.get(selection) + "\n");
+        }
+        menuPause();
         historyMenu();
     }
 
@@ -112,13 +130,16 @@ public class Menu {
         System.out.println("SlangWord dictionary --- Add slang word");
         System.out.print("Input slang word you wish to add: ");
         String key = sc.nextLine();
-        System.out.print("Input definition for your slang word");
+        System.out.print("Input definition for your slang word: ");
         String def = sc.nextLine();
+        System.out.println();
         if (this.mDict.add(new SlangWord(key,def))) {
-            System.out.println("Added " + key + " successfuly");
+            System.out.println("Added " + key + " successfully\n");
+            menuPause();
         }
         else {
-            System.out.println("This slang word is already exist");
+            System.out.println("This slang word is already exist\n");
+            menuPause();
         }
     }
 
@@ -127,16 +148,18 @@ public class Menu {
         System.out.print("Input slang word you wish to edit: ");
         String key = sc.nextLine();
         if (this.mDict.keyExist(key)) {
-            System.out.print("Input new slang keyword for your slang word");
+            System.out.print("Input new slang keyword for your slang word: ");
             String newKey = sc.nextLine();
-            System.out.print("Input new definition for your slang word");
+            System.out.print("Input new definition for your slang word: ");
             String def = sc.nextLine();
-
+            System.out.println();
             this.mDict.update(key, new SlangWord(newKey,def));
-            System.out.println("Updated successfuly");
+            System.out.println("Updated successfully\n");
+            menuPause();
         }
         else {
-            System.out.println("The slang word you want to edit does not exist");
+            System.out.println("The slang word you want to edit does not exist\n");
+            menuPause();
         }
     }
 
@@ -148,20 +171,24 @@ public class Menu {
             System.out.println("Do you wish to delete slang word: " + key + " , defitnition: " + this.mDict.getData().get(key));
             int selection = 0;
             do {
-                System.out.print("Input 1(Yes) or 2(No)");
+                System.out.print("Input 1(Yes) or 2(No): ");
                 selection = sc.nextInt();
-                sc.nextLine(); 
+                sc.nextLine();
+                System.out.println();
             } while(selection != 1 && selection != 2);
             if (selection == 1) {
                 this.mDict.delete(key);
-                System.out.println("Removed + " + key + " successfuly");
+                System.out.println("Removed " + key + " successfully\n");
+                menuPause();
             }
             else {
-                System.out.println("Aborted deleting the slang word");
+                System.out.println("Aborted deleting the slang word\n");
+                menuPause();
             }
         }
         else {
-            System.out.println("The slang word you want to edit does not exist");
+            System.out.println("The slang word you want to edit does not exist\n");
+            menuPause();
         }
     }
 
@@ -170,37 +197,43 @@ public class Menu {
         System.out.println("Are you sure you want to recover default slang word dictionary");
         int selection = 0;
         do {
-                System.out.print("Input 1(Yes) or 2(No)");
+                System.out.print("Input 1(Yes) or 2(No): ");
                 selection = sc.nextInt();
                 sc.nextLine();
+                System.out.println();
         } while(selection != 1 && selection != 2);
         if (selection == 1) {
             this.mDict.resetData("slang_default", "slang");
+            System.out.println("Successfully reset dictionary\n");
+            menuPause();
         }
         else {
-            System.out.println("Aborted reseting the slang word dictionary");
+            System.out.println("Aborted reseting the slang word dictionary\n");
+            menuPause();
         }
     }
 
     public void slangWordOfTheDayMenu() {
         System.out.println("SlangWord dictionary --- Slang word of the day");
         SlangWord rs = mDict.randomSlang(1).get(0);
-        System.out.println("Slang: " + rs.getKeyword() + " , definition: " + rs.getDefinition());
+        System.out.println("Slang: " + rs.getKeyword() + " , definition: " + rs.getDefinition() + "\n");
+        menuPause();
     }
 
     public void slangWordQuizMenu() throws IOException {
         System.out.println("SlangWord dictionary --- Slang word quiz game");
         System.out.println("Choose game mode you want to play: ");
-        System.out.println("1. Guess the slang word by defintion");
-        System.out.println("2. Guess the definition of the slang word");
+        System.out.println("1. Guess the definiton of the given slang word");
+        System.out.println("2. Guess the slangword with given definition");
         System.out.println("3. Back to main menu");
         runSlangWordQuizMenu();
     }
 
     public void runSlangWordQuizMenu() throws IOException {
-        System.out.println("Input selection: ");
+        System.out.print("Input selection: ");
         int selection = sc.nextInt();
         sc.nextLine();
+        System.out.println();
         switch(selection) {
             case 1:
                 slangWordQuizAnswerMenu(1);
@@ -228,10 +261,10 @@ public class Menu {
         
         for (int i = 0 ; i < rand.size() ; i++) {
             if (type == 1) {
-                System.out.println(i + ". " + rand.get(i).getDefinition());
+                System.out.println(i + 1 + ". " + rand.get(i).getDefinition());
             }
             if (type == 2) {
-                System.out.println(i + ". " + rand.get(i).getKeyword());
+                System.out.println(i + 1 + ". " + rand.get(i).getKeyword());
             }
         }
         SlangWord answer = rand.get(question);
@@ -241,16 +274,18 @@ public class Menu {
         System.out.print("Your answer: ");
         int pAnswer = sc.nextInt();
         sc.nextLine();
+        System.out.println();
         if (pAnswer == answerNum + 1) {
-            System.out.println(answerNum + 1 + " was the correct answer");
+            System.out.println((answerNum + 1) + " was the correct answer");
         }
         else {
-            System.out.println("The correct answer was " + answerNum + 1);
+            System.out.println("The correct answer was " + (answerNum + 1));
         }
         System.out.println("Do you wish to continue play the game (this mode) ?");
-        System.out.print("Input 1(Yes) or 2(No)");
+        System.out.print("Input 1(Yes) or 2(No): ");
         pAnswer = sc.nextInt();
         sc.nextLine();
+        System.out.println();
         switch(pAnswer) {
             case 1:
                 slangWordQuizAnswerMenu(type);
@@ -314,9 +349,7 @@ public class Menu {
                 findSlangWordMenu();
                 break;
             case 2:
-                if (this.mHistory.getSize() == 0) {
-                    mHistory.loadHistory("history");
-                }
+                mHistory.loadHistory("history");
                 historyMenu();
                 break;
             case 3:
@@ -335,6 +368,7 @@ public class Menu {
                 slangWordOfTheDayMenu();
                 break;
             case 8:
+                slangWordQuizMenu();
                 break;
             case 9:
                 System.exit(0);

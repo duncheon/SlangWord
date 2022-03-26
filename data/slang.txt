@@ -5918,6 +5918,7 @@ REDONCULOUS`Ridiculous
 MULLET`Hairstyle
 NYK`Not Yet Known| Now You Know
 NYP`Not Your Problem
+Vinh`fresher dev
 NYERK`Replacement swearword
 NYT`Not Your Type| New York Times
 NYU`New York University
@@ -6771,7 +6772,6 @@ DWAG`Misspelling of DAWG
 FLEX`Show off
 PIBE`Play It By Ear
 DWAI`Don't Worry About It
-TUNG`Prodev
 TUNE`Flirt
 TEOTWAWKI`The End Of The World As We Know It
 IDKW`I Don't Know Why

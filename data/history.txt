@@ -1,11 +1,12 @@
-MODE: bySlang, searchInput: :), time: 2022/03/26 22:11:33, found: 1
-:)`Happy
-MODE: bySlang, searchInput: Hello, time: 2022/03/26 22:11:39, found: 1
-Hello`null
-MODE: bySlang, searchInput: :), time: 2022/03/26 22:11:49, found: 1
-:)`Happy
-MODE: byDefiniton, searchInput: qwdaaascasc, time: 2022/03/26 22:11:58, found: 0
-MODE: byDefiniton, searchInput: sad, time: 2022/03/26 22:12:02, found: 17
+MODE: bySlang, searchInput: aaaaaaaaaaaaaaaaaaa, time: 2022/03/26 23:19:11, found: 0
+MODE: bySlang, searchInput: MEAN, time: 2022/03/26 23:19:15, found: 1
+MEAN`Cool
+MODE: bySlang, searchInput: Vinh, time: 2022/03/26 23:19:18, found: 1
+Vinh`fresher dev
+MODE: byDefiniton, searchInput: qwdqwdqw, time: 2022/03/26 23:19:21, found: 0
+MODE: byDefiniton, searchInput: frown, time: 2022/03/26 23:19:25, found: 1
+:<`Sad| frowning
+MODE: byDefiniton, searchInput: sad, time: 2022/03/26 23:19:57, found: 17
 DITD`Down In The Dumps| sad
 :(`Unhappy| sad
 :<`Sad| frowning
@@ -23,57 +24,6 @@ TBSS`Too Bad, So Sad
 HSIT`How Sad Is That
 S&M`Sadism and Masochism
 SAP`Sad And Pathetic| Fool
-MODE: bySlang, searchInput: VINH, time: 2022/03/26 22:17:36, found: 1
-VINH`null
-MODE: bySlang, searchInput: VINH, time: 2022/03/26 22:17:56, found: 1
-VINH`dev
-MODE: bySlang, searchInput: TUNG, time: 2022/03/26 22:20:12, found: 1
-TUNG`Prodev
-MODE: byDefiniton, searchInput: dev, time: 2022/03/26 22:20:22, found: 13
-SDK`Software Development Kit
-MSDN`Microsoft Developer Network
-GED`General Educational Development
-IDE`Integrated Development Environment| Integrated Device Electronics
-IED`Improvised Explosive Device
-MID`Mid grade marijuana| Mobile Internet Device
-}:-)`Devilish smile
-VINH`dev
-DEVO`Devastated
-TUNG`Prodev
-R&D`Research and Development| Replicate and Duplicate
-TDWP`The Devil Wears Prada (Band)
-AMD`Advanced Micro Devices
-MODE: bySlang, searchInput: VINH, time: 2022/03/26 22:21:20, found: 1
-VINH`null
-MODE: bySlang, searchInput: VANTHEVINH, time: 2022/03/26 22:21:26, found: 1
-VANTHEVINH`almost pro def
-MODE: bySlang, searchInput: VINH, time: 2022/03/26 22:23:14, found: 1
-VINH`null
-MODE: bySlang, searchInput: VANTHEVINH, time: 2022/03/26 22:23:20, found: 1
-VANTHEVINH`almost pro def
-MODE: byDefiniton, searchInput: almost, time: 2022/03/26 22:23:23, found: 4
-TGIAF`Thank God It's Almost Friday
-BOKE`Gag| almost vomit
-VANTHEVINH`almost pro def
-AMAA`Ask Me Almost Anything
-MODE: bySlang, searchInput: VANTHEVINH, time: 2022/03/26 22:25:08, found: 1
-VANTHEVINH`null
-MODE: bySlang, searchInput: VANTHEVINH, time: 2022/03/26 22:25:44, found: 1
-VANTHEVINH`null
-MODE: bySlang, searchInput: VANTHEVINH, time: 2022/03/26 22:27:44, found: 1
-VANTHEVINH`null
-MODE: byDefiniton, searchInput: dev, time: 2022/03/26 22:27:53, found: 12
-SDK`Software Development Kit
-MSDN`Microsoft Developer Network
-GED`General Educational Development
-IDE`Integrated Development Environment| Integrated Device Electronics
-IED`Improvised Explosive Device
-MID`Mid grade marijuana| Mobile Internet Device
-}:-)`Devilish smile
-DEVO`Devastated
-TUNG`Prodev
-R&D`Research and Development| Replicate and Duplicate
-TDWP`The Devil Wears Prada (Band)
-AMD`Advanced Micro Devices
-MODE: bySlang, searchInput: TUNG, time: 2022/03/26 22:27:59, found: 1
-TUNG`Prodev
+MODE: byDefiniton, searchInput: proDev, time: 2022/03/26 23:20:55, found: 1
+TUNG`proDEV
+MODE: bySlang, searchInput: TUNG, time: 2022/03/26 23:21:42, found: 0

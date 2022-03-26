@@ -134,6 +134,7 @@ public class Dictionary {
     }
 
     public void resetData(String backupPath,String resetPath) throws IOException {
+        this.words.clear();
         generateDataFromFile(backupPath);
         saveSlangData(resetPath);
     }

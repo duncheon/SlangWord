@@ -51,6 +51,7 @@ public class History {
     }
 
     public void loadHistory(String historyPath) throws IOException {
+        historyArr.clear();
         try {
             BufferedReader br = new BufferedReader(new FileReader("./data/" + historyPath + ".txt"));
             String historyLine = "";
@@ -61,7 +62,9 @@ public class History {
             while (true) {
                 String line = br.readLine();
                 if (line == null) {
-                    historyArr.add(historyLine);
+                    if (this.historyArr.size() != 0) {
+                        historyArr.add(historyLine);
+                    }
                     break;
                 }
                 else {
@@ -93,6 +96,9 @@ public class History {
     }
 
     public void printShortHistory() {
+        if (this.historyArr.size() == 0) {
+            System.out.println("No search records");
+        }
         for (String i : historyArr) {
             System.out.println(getShortFormat(i));
         }
