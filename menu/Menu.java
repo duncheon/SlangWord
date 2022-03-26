@@ -133,7 +133,7 @@ public class Menu {
             String def = sc.nextLine();
 
             this.mDict.update(key, new SlangWord(newKey,def));
-            System.out.println("Added " + key + " successfuly");
+            System.out.println("Updated successfuly");
         }
         else {
             System.out.println("The slang word you want to edit does not exist");
@@ -168,7 +168,6 @@ public class Menu {
     public void resetSlangWordMenu() throws IOException {
         System.out.println("SlangWord dictionary --- Reset to default slang word dictionary");
         System.out.println("Are you sure you want to recover default slang word dictionary");
-        System.out.println("Input 1(Yes) or 2(No)");
         int selection = 0;
         do {
                 System.out.print("Input 1(Yes) or 2(No)");

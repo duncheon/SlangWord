@@ -33,7 +33,7 @@ public class History {
             try {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
                 LocalDateTime now = LocalDateTime.now();
-                String historyLine =  "MODE: " + mode  + ", searchInput: " + keyword + "time: " + dtf.format(now) + "`found: " + foundSlang.size() + "\n";
+                String historyLine =  "MODE: " + mode  + ", searchInput: " + keyword + ", time: " + dtf.format(now) + ", found: " + foundSlang.size() + "\n";
                 for (SlangWord i : foundSlang) {
                     historyLine += i.getKeyword() + "`" + i.getDefinition() + "\n";
                 }
@@ -54,10 +54,10 @@ public class History {
         try {
             BufferedReader br = new BufferedReader(new FileReader("./data/" + historyPath + ".txt"));
             String historyLine = "";
-            int idx = 1;
+            int idx = 0;
 
             String firstLine = br.readLine();
-            historyLine = "0. " + firstLine;
+            historyLine = idx + ". " + firstLine;
             while (true) {
                 String line = br.readLine();
                 if (line == null) {
@@ -71,7 +71,7 @@ public class History {
                     }
                     else {
                         historyArr.add(historyLine);
-                        historyLine = idx + ". " + line;
+                        historyLine = ++idx + ". " + line;
                     }
                 }
             }

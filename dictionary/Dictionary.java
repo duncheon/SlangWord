@@ -57,6 +57,7 @@ public class Dictionary {
     }
 
     public void saveWord(SlangWord newWord, String filepath) {
+        this.words.put(newWord.getKeyword(),newWord.getDefinition());
         PrintStream ps;
         try {
             ps = new PrintStream(new FileOutputStream("./data/" + filepath + ".txt",true));
@@ -96,7 +97,7 @@ public class Dictionary {
 
     public Boolean add(SlangWord newWord) {
         if (this.words.containsKey(newWord.getKeyword()) == false) {
-            saveWord(newWord, "slang-test");
+            saveWord(newWord, "slang");
             return true;
         }
         else {
