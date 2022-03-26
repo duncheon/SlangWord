@@ -189,37 +189,89 @@ public class Menu {
         System.out.println("Slang: " + rs.getKeyword() + " , definition: " + rs.getDefinition());
     }
 
-    public void slangWordQuizMenu() {
+    public void slangWordQuizMenu() throws IOException {
         System.out.println("SlangWord dictionary --- Slang word quiz game");
         System.out.println("Choose game mode you want to play: ");
         System.out.println("1. Guess the slang word by defintion");
         System.out.println("2. Guess the definition of the slang word");
+        System.out.println("3. Back to main menu");
+        runSlangWordQuizMenu();
     }
 
-    public void runSlangWordQuizMenu() {
+    public void runSlangWordQuizMenu() throws IOException {
         System.out.println("Input selection: ");
         int selection = sc.nextInt();
         sc.nextLine();
         switch(selection) {
             case 1:
+                slangWordQuizAnswerMenu(1);
                 break;
             case 2:
+                slangWordQuizAnswerMenu(2);
+                break;
+            case 3:
+                printMenu();
+            default:
                 break;
         }
+        slangWordQuizMenu();
     }
-    public void slangWordQuizAnswerMenu(String[] arr, String questionWord, int type) {
+    public void slangWordQuizAnswerMenu(int type) {
+        List<SlangWord> rand= this.mDict.randomSlang(4);
+        int question =  (int) (Math.random() * 4);
+
         if (type == 1) {
-            System.out.println("Choose the right definiton for the slang word");
+            System.out.println("Choose the right definiton for the slang word: " + rand.get(question).getKeyword());
         }
         else {
-            System.out.println("Choose the right slang word for the definition");
+            System.out.println("Choose the right slang word for the definition: " + rand.get(question).getDefinition());
         }
-        System.out.println("Answer title");
-        for (int i = 0 ; i < arr.length ; i++) {
-            System.out.println(i + ". " + arr[i]);
+        
+        for (int i = 0 ; i < rand.size() ; i++) {
+            if (type == 1) {
+                System.out.println(i + ". " + rand.get(i).getDefinition());
+            }
+            if (type == 2) {
+                System.out.println(i + ". " + rand.get(i).getKeyword());
+            }
+        }
+        SlangWord answer = rand.get(question);
+        runSlangWordQuizAnswerMenu(question, answer, type);
+    }
+    public void runSlangWordQuizAnswerMenu(int answerNum, SlangWord answerSlang, int type) {
+        System.out.print("Your answer: ");
+        int pAnswer = sc.nextInt();
+        sc.nextLine();
+        if (pAnswer == answerNum + 1) {
+            System.out.println(answerNum + 1 + " was the correct answer");
+        }
+        else {
+            System.out.println("The correct answer was " + answerNum + 1);
+        }
+        System.out.println("Do you wish to continue play the game (this mode) ?");
+        System.out.print("Input 1(Yes) or 2(No)");
+        pAnswer = sc.nextInt();
+        sc.nextLine();
+        switch(pAnswer) {
+            case 1:
+                slangWordQuizAnswerMenu(type);
+                break;
+            case 2:
+                // auto return to main quiz menu
+                break;
+            default:
+                break;
         }
     }
 
+    public void runSlangWordAnswerSelection(int correctAnswer) {
+        System.out.println("Your answer: ");
+        int pAnswer = sc.nextInt();
+        sc.nextLine();
+        if (correctAnswer == pAnswer) {
+            System.out.println("Your answer is correct !");
+        }
+    }
     public void runHistoryMenu() throws IOException {
         System.out.print("Input selection: ");
         int selection = sc.nextInt();

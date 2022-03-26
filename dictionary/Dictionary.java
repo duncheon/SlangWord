@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import util.RandomSlang;
-
 public class Dictionary {
     private HashMap<String,String> words;
     private List<String> keys; // for randomize
@@ -116,7 +114,7 @@ public class Dictionary {
         }
         return rs;
     }
-    
+
     public Boolean keyExist(String key) {
         if (this.words.containsKey(key)) {
             return true;
@@ -139,16 +137,6 @@ public class Dictionary {
         saveSlangData(resetPath);
     }
     public static void main(String[] args) throws IOException {
-        Dictionary mDictionary = new Dictionary();
-        mDictionary.generateDataFromFile("slang");
-
-        List<SlangWord> rs = RandomSlang.randomSlang(mDictionary, mDictionary.getKeys(), 4);
-
-        for (int i = 0 ; i < rs.size();i++) {
-            rs.get(i).printSlangWord();
-        }
-
-        mDictionary.resetData("slang_default","slang_test");
     }
 
 }
