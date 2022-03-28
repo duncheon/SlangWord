@@ -187,7 +187,7 @@ public class Menu {
             }
         }
         else {
-            System.out.println("The slang word you want to edit does not exist\n");
+            System.out.println("The slang word you want to delete does not exist\n");
             menuPause();
         }
     }
